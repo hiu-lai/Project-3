@@ -6,6 +6,8 @@ plu-total-hab-data <a href = "https://hassavocadoboard.com/category-data/">Retai
 
 Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.com/volume-data-projections/">Volume Data  Projections (kg)</a>
 
+username: hiukwan.lai@gmail.com
+password: !3HtzgC8PxhTvFr
 
 <a href="https://loveonetoday.com/how-to/identify-hass-avocados/">Avocado glossary</a>
 
