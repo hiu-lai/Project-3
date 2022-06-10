@@ -3,10 +3,7 @@ import pandas as pd
 import os, fnmatch
 import numpy as np
 
-
-def volume_file():
-    
-    # Looking for files
+def file_search():
     for root, dirs, files in os.walk("resources", topdown=False):
         resourcesVFiles = []
         resourcesRFiles = []
@@ -18,8 +15,18 @@ def volume_file():
                 resourcesTotFiles.append(os.path.join(root, name))
             else:
                 resourcesRFiles.append(os.path.join(root, name))
+    resourcesFile = {
+        "volume_data": resourcesVFiles,
+        "region_data": resourcesRFiles,
+        "sales_tot_data": resourcesTotFiles
+    }
+    return  resourcesFile
 
-    # Number of files found starting with "Volume" in filename
+
+def volume_file():
+
+    resourcesVFiles = file_search()['volume_data']
+
     numfile = len(resourcesVFiles)
 
     # Load Volume into dfs
