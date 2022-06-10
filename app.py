@@ -4,7 +4,7 @@ import data_clean
 
 app = Flask(__name__)
 
-mongo = PyMongo(app, uri="mongodb://localhost:27017/volume_data")
+mongo = PyMongo(app, uri="mongodb://localhost:27017/avocado_data")
 
 @app.route("/")
 
@@ -17,7 +17,8 @@ def home ():
 def volume_file():
     vol_data = data_clean.volume_file()
 
-    mongo.db.collection.update_one({}, {"$set": vol_data}, upsert=True)
+    # mongo.db.collection.update_one({}, {"$set": vol_data}, upsert=True)
+    mongo.db.volume_data.insert_many(vol_data)
 
     # Redirect back to home page
     return redirect("/")

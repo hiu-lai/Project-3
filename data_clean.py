@@ -1,10 +1,12 @@
 # Import Dependencies
 import pandas as pd
 import os, fnmatch
+import numpy as np
 
-# Looking for files
+
 def volume_file():
-
+    
+    # Looking for files
     for root, dirs, files in os.walk("resources", topdown=False):
         resourcesVFiles = []
         resourcesRFiles = []
@@ -51,7 +53,8 @@ def volume_file():
 
     volume_transformed['WEDate'] = pd.to_datetime(volume_transformed.Week)
 
-    actual_vol = volume_transformed.loc[(volume_transformed["Status"] == "Actual"), :]
+    actual_vol_temp = volume_transformed.loc[(volume_transformed["Status"] == "Actual"), :]
+    actual_vol = actual_vol_temp.to_dict("records")
 
     return actual_vol
 
