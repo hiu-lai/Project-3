@@ -11,15 +11,15 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/avocado_data")
 def home ():
     avocado_data = mongo.db.collection.find_one()
 
-    return render_template("index.html", volume_data = avocado_data)
+    return render_template("index.html", avocado_data = avocado_data)
 
 @app.route("/data_clean")
 def volume_file():
     vol_data = data_clean.volume_file()
-
+    region_data = data_clean.scrap_region()
     # mongo.db.collection.update_one({}, {"$set": vol_data}, upsert=True)
     mongo.db.volume_data.insert_many(vol_data)
-
+    mongo.db.US_regions.insert_many(region_data)
     # Redirect back to home page
     return redirect("/")
 

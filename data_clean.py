@@ -1,9 +1,14 @@
 # Import Dependencies
 import pandas as pd
 import os, fnmatch
-import numpy as np
+from splinter import Browser
+from bs4 import BeautifulSoup as bs
+import time
+from webdriver_manager.chrome import ChromeDriverManager
 
 def file_search():
+    # Searching for csv filenames
+
     for root, dirs, files in os.walk("resources", topdown=False):
         resourcesVFiles = []
         resourcesRFiles = []
@@ -15,6 +20,8 @@ def file_search():
                 resourcesTotFiles.append(os.path.join(root, name))
             else:
                 resourcesRFiles.append(os.path.join(root, name))
+    
+    # Load all relevant filenames and path to a dictionary
     resourcesFile = {
         "volume_data": resourcesVFiles,
         "region_data": resourcesRFiles,
@@ -25,6 +32,8 @@ def file_search():
 
 def volume_file():
 
+    # Extract filenames and Path or csv files relating to volume unit
+
     resourcesVFiles = file_search()['volume_data']
 
     numfile = len(resourcesVFiles)
@@ -34,7 +43,6 @@ def volume_file():
         file = resourcesVFiles[i]
         i = i + 1
         variable_name = f"vol_{i}"
-    #     print(variable_name)
         globals()[variable_name] =  pd.read_csv(file)
 
     # Union Join dfs
@@ -65,3 +73,7 @@ def volume_file():
 
     return actual_vol
 
+
+    
+    
+    
