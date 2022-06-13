@@ -23,14 +23,17 @@ def home ():
 
     return render_template("index.html", avocado_data = avocado_data)
 
-@app.route("/fetch_data")
+@app.route("/data_clean")
 def volume_file():
     vol_data = data_clean.volume_file()
 
     total_sold = data_clean.total_file()
 
     # mongo.db.collection.update_one({}, {"$set": vol_data}, upsert=True)
-    result = mongo.db.volume_data.delete_many({})
+    # Remove all data
+    mongo.db.volume_data.delete_many({})
+
+    # Insert data into collection
     mongo.db.volume_data.insert_many(vol_data)
     mongo.db.volume_data.insert_many(total_sold)
 
