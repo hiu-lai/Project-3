@@ -107,10 +107,22 @@ def total_file():
     # Change dates columns to date 
     rearrange_cols_df['Current Year Week Ending'] = pd.to_datetime(rearrange_cols_df['Current Year Week Ending'])
     rearrange_cols_df['Year']=rearrange_cols_df['Current Year Week Ending'].dt.year
-
+    
     # Rename columns
     rearrange_cols_df.columns = ['City', 'Timeframe', 'Weekly Reporting Date', 'Produce Type', 'Average Avocado Price Year', 'Small/Medium (4046) Units', 'Large (4225) Units', 'Extra Large (4770) Units', 'Bulk GTIN', 'Bagged Units', 'Total Units', 'Year'] 
 
-    total_sold = rearrange_cols_df.to_dict('records')
+    rearrange_cols_df[['s_city', 's_city_2']] = rearrange_cols_df.City.str.split(pat=chr(47), expand=True)
+
+    # Adding 'State' & 'Region' to data
+    hassboard_state = pd.read_csv("resources/hassboard_state.csv")
+    new_df = rearrange_cols_df.merge(hassboard_state, left_on="City", right_on="h_city", how="left").drop(['s_city_2', 'h_city'], axis=1)
+
+    # Adding Longitude & Latitude info
+
+    cities_coord = pd.read_csv("resources/US_cities_coord.csv")
+    data_complete_df = new_df.merge(cities_coord, left_on=["s_city", "h_state"], right_on=["City", "State"], how="left")
+    # data_complete_df.drop(['s_city','h_state', 'City_y'], axis=1).rename(columns={'City_x': 'City'})
+
+    total_sold = data_complete_df.to_dict('records')
 
     return total_sold
