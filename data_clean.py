@@ -42,7 +42,7 @@ def volume_file():
         file = resourcesVFiles[i]
         i = i + 1
         variable_name = f"vol_{i}"
-        globals()[variable_name] =  pd.read_csv(file)
+        globals()[variable_name] =  pd.read_csv(file, encoding='utf-8')
         volumedf_list.append(variable_name)
 
     # Union Join dfs
@@ -84,7 +84,7 @@ def total_file():
         file = resourcesTotFiles[i]
         i = i + 1
         variable_name = f"tot_{i}"
-        globals()[variable_name] =  pd.read_csv(file)
+        globals()[variable_name] =  pd.read_csv(file, encoding='utf-8')
         totaldf_list.append(variable_name)
 
     # Union Join dfs
