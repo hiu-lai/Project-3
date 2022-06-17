@@ -11,7 +11,7 @@ JSC.Chart('chart1', {
 });
 
 JSC.Chart('chart2', { 
-    type: 'vertical column',
+    type: 'column',
     series: [
         {
             name: 'Rammy',
