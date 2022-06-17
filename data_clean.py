@@ -64,29 +64,9 @@ def volume_file():
     volume_transformed['WEDate'] = pd.to_datetime(volume_transformed.Week)
 
     actual_vol_temp = volume_transformed.loc[(volume_transformed["Status"] == "Actual"), :]
-    # actual_vol = actual_vol_temp.to_dict("records")
-    import numpy as np
-    actual_vol = []
-    for i in np.arange(len(actual_vol_temp)):
-        col_01 = actual_vol_temp['Week'][i]
-        col_02 = actual_vol_temp['Year'][i]
-        col_03 = actual_vol_temp['Status'][i]
-        col_04 = actual_vol_temp['Total Volume'][i]
-        col_05 = actual_vol_temp['California'][i]
-        col_06 = actual_vol_temp['Chile'][i]    
-        col_07 = actual_vol_temp['Mexico'][i]    
-        col_08 = actual_vol_temp['Peru'][i]   
-        col_09 = actual_vol_temp['Colombia'][i]   
-        col_10 = actual_vol_temp['Dominican Republic'][i]   
-        col_11 = actual_vol_temp['WEDate'][i]   
-        actual_vol.append({'Week': col_01, 'Year': col_02,
-                            'Status': col_03, 'Total Volume': col_04,
-                            'California': col_05, 'Chile': col_06,
-                            'Mexico': col_07, 'Peru': col_08,
-                            'Colombia': col_09, 'Dominican Republic': col_10,
-                            'WEDate': col_11
-                            })
-    actual_vol
+    actual_vol = actual_vol_temp.to_dict("records")
+ 
+    # actual_vol
 
     return actual_vol
 
@@ -129,7 +109,7 @@ def total_file():
     # Change dates columns to date 
     rearrange_cols_df['Current Year Week Ending'] = pd.to_datetime(rearrange_cols_df['Current Year Week Ending'])
     rearrange_cols_df['Year']=rearrange_cols_df['Current Year Week Ending'].dt.year
-    
+        
     # Rename columns
     rearrange_cols_df.columns = ['City', 'Timeframe', 'Weekly Reporting Date', 'Produce Type', 'Average Avocado Price Year', 'Small/Medium (4046) Units', 'Large (4225) Units', 'Extra Large (4770) Units', 'Bulk GTIN', 'Bagged Units', 'Total Units', 'Year'] 
 
