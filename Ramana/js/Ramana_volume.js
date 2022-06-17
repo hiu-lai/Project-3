@@ -190,7 +190,7 @@ Plotly.newPlot('myDiv', [0, 1, 2, 3].map(makeTrace), {
             method: 'restyle',
             args: ['line.color', 'blue'],
             label: 'blue'
-        }, {
+        }, { 
             method: 'restyle',
             args: ['line.color', 'green'],
             label: 'green'

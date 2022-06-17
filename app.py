@@ -61,11 +61,11 @@ def fetch_files():
     # mongo.db.collection.update_one({}, {"$set": vol_data}, upsert=True)
     result_S = mongo.db.sales_data.delete_many({})
     result_V = mongo.db.volume_data.delete_many({})
-
-    mongo.db.volume_data.insert_many(vol_data)
-    mongo.db.sales_data.insert_many(total_sold)
-    # Redirect back to home page
-    return redirect("/")
+    
+#     mongo.db.volume_data.insert_many(vol_data)
+#     mongo.db.sales_data.insert_many(total_sold)
+#     # Redirect back to home page
+#     return redirect("/")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=8000,debug=True)
