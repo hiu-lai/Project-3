@@ -18,7 +18,7 @@ MONGODB_PORT = 27017
 
 #Specify variables in csv of interest
 FIELDS_v = {'Week': True, 'Year': True, 'Status': True,'Total Volume': True, 'California': True,'Chile': True,'Mexico': True,'Peru': True,'Colombia': True, 'Dominican Republic': True,'WEDate': True,'_id': False}
-FIELDS_S = {'City_x': True, 'Timeframe': True, 'Weekly Reporting Date': True,'Product Type': True, 'Average Avocado Price Year': True,'Small/Medium (4046) Units': True,'Large (4225) Units': True,'Extra Large (4770) Units': True,'Bulk GTIN': True, 'Bagged Units': True,'Total Units': True, 'Year': True, 'State': True, 'lat':True, 'lon': True, 'Region': True, '_id': False}
+FIELDS_S = {'City_x': True, 'Timeframe': True, 'Weekly Reporting Date': True,'Product Type': True, 'Average Avocado Price Year': True,'Small/Medium (4046) Units': True,'Large (4225) Units': True,'Extra Large (4770) Units': True,'Bulk GTIN': True, 'Bagged Units': True,'Total Units': True, 'Year': True, 'State': True, 'lat':True, 'lon': True, 'Region': True, 'abbreviation': True, '_id': False}
 
 app = Flask(__name__)
 mongo = PyMongo(app, uri="mongodb://localhost:27017/avocado_data")
