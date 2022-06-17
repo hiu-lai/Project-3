@@ -45,6 +45,19 @@
             </div>
         </div>
 
+        <div class="row bg-success">
+            <div class="col-7">
+                <select id="competitionDate">
+                    <!-- Will be populated by init (see competition.js) -->
+                </select>
+            </div>
+        </div>
+        <div class="row bg-success">
+            <div id="competitionGraph">
+                <!-- Will be created via plotly (see competition js)-->
+            </div>
+        </div>
+
         <!--Bottom ROW-->
         <div class="row">
             <div class="col-12 bg-primary text-center">
@@ -53,5 +66,8 @@
         </div>
     </div>
     
+    <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="{{url_for('static', filename='js/competition.js')}}"></script>
 </body>
 </html>
