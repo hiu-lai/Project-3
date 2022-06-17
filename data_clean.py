@@ -109,7 +109,7 @@ def total_file():
     # Change dates columns to date 
     rearrange_cols_df['Current Year Week Ending'] = pd.to_datetime(rearrange_cols_df['Current Year Week Ending'])
     rearrange_cols_df['Year']=rearrange_cols_df['Current Year Week Ending'].dt.year
-    
+        
     # Rename columns
     rearrange_cols_df.columns = ['City', 'Timeframe', 'Weekly Reporting Date', 'Produce Type', 'Average Avocado Price Year', 'Small/Medium (4046) Units', 'Large (4225) Units', 'Extra Large (4770) Units', 'Bulk GTIN', 'Bagged Units', 'Total Units', 'Year'] 
 

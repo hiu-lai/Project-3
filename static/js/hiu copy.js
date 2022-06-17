@@ -12,21 +12,35 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 var svg = d3
-  .select(".volume_3_years")
+  .select("volume_3_years")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
 
-  var chartGroup = svg.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
- 
- d3.json("/avocado/volume").then(function(volume_data, err) {
+// var yAxis = svg.append("g")
+// 	.attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+var x = d3.scaleBand()
+	.range([0, width])
+	.padding(0.2);
+
+var xAxis = svg.append("g")
+	.attr(`transform`, `translate(0, " + height + ")`)
+
+var y = d3.scaleLinear()
+  .range([ height, 0]);
+
+var yAxis = svg.append("g")
+  .attr("class", "volume_3_years")
+
+d3.json("/av)ocado/volume").then(function(volume_data, err) {
     if (err) throw err;
 
-	// var dateFormat = d3.timeParse("%Y-%m-%d");
+	var dateFormat = d3.timeFormat("%Y-%m-%d");
+
     volume_data.forEach(function(d){
-		// d["WEDate"] = dateFormat.parse(d["WEDate"]);
-		// d["WEDate"].setDate(1);
+		d["WEDate"] = dateFormat(d["WEDate"]);
+		d["WEDate"].setDate(1);
 		d["California"] = +d["California"];
 		d["Chile"] = +d["Chile"];
 		d["Colombia"] = +d["Colombua"];
@@ -47,74 +61,33 @@ var svg = d3
 
 		console.log(chosenYear)
 	
-		var xTimeScale = d3.scaleTime()
-			.domain([d3.extent(chosenYear, d => d['WEDate'])])
-			.range([height, 0]);
-			
-		var yLinearScale1 = d3.scaleLinear()
-			.domain([0, d3.max(chosenYear, d => d['California'])])
-			.range([height, 0]);
+		x.domain(chosenYear.map(function(d) {return d['WEDate']; }))
+		xAxis.call(d3.axisBottom(x))
 
-	
-		var yLinearScale2 = d3.scaleLinear()
-		.domain([0, d3.max(chosenYear, d => d['Chile'])])
-		.range([height, 0]);
-	
-	  // Create axis functions
-	var bottomAxis = d3.axisBottom(xTimeScale)
-	.tickFormat(d3.timeFormat("%d-%b-%Y"));
-	var leftAxis = d3.axisLeft(yLinearScale1);
-	var rightAxis = d3.axisRight(yLinearScale2);
+		y.domain([0, d3.max(data, function(d) { return d.value }) ]);
+  		yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
-	// Add x-axis
-	chartGroup.append("g")
-	.attr("transform", `translate(0, ${height})`)
-	.call(bottomAxis);
+		// Create the u variable
+		var u = svg.selectAll("rect")
+			.data(data)
 
-	// Add y1-axis to the left side of the display
-	chartGroup.append("g")
-	// Define the color of the axis text
-	.classed("green", true)
-	.call(leftAxis);
+		u
+			.enter()
+			.append("rect") // Add a new rect for each new elements
+			.merge(u) // get the already existing elements as well
+			.transition() // and apply changes to all of them
+			.duration(1000)
+			.attr("x", function(d) { return x(d['WEDate']); })
+			.attr("y", function(d) { return y(d.['WEDate']); })
+			.attr("width", x.bandwidth())
+			.attr("height", function(d) { return height - y(d.value); })
+			.attr("fill", "#69b3a2")
 
-	// Add y2-axis to the right side of the display
-	chartGroup.append("g")
-	// Define the color of the axis text
-	.classed("blue", true)
-	.attr("transform", `translate(${width}, 0)`)
-	.call(rightAxis);
-
-	// Line generators for each line
-	var line1 = d3.line()
-	.x(d => xTimeScale(d['WEDate']))
-	.y(d => yLinearScale1(d['California']));
-
-	var line2 = d3.line()
-	.x(d => xTimeScale(d['WEDate']))
-	.y(d => yLinearScale2(d['Chile']));
-
-	// Append a path for line1
-	chartGroup.append("path")
-	.data([chosenYear])
-	.attr("d", line1)
-	.classed("line green", true);
-
-	// Append a path for line2
-	chartGroup.append("path")
-	.data([chosenYear])
-	.attr("d", line2)
-	.classed("line blue", true);
-
-	// Append axes titles
-	chartGroup.append("text")
-	.attr("transform", `translate(${width / 2}, ${height + margin.top + 20})`)
-	// .classed("dow-text text", true)
-	.text("Volume");
-
-	chartGroup.append("text")
-	.attr("transform", `translate(${width / 2}, ${height + margin.top + 37})`)
-	// .classed("smurf-text text", true)
-	.text("Countries");
-}).catch(function(error) {
+		// If less group in the new dataset, I delete the ones not in use anymore
+		u
+			.exit()
+			.remove()
+	}
+).catch(function(error) {
 	console.log(error);
 });
