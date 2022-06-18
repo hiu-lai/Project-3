@@ -7,6 +7,8 @@ from bson.json_util import dumps, loads
 import pandas
 import json
 import data_clean
+import simplejson
+
 
 #Specify string names inside '' for following variables 
 MONGODB_HOST = 'localhost'
@@ -25,7 +27,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/avocado_data")
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("Ramana_Sales.html")
 
 
 @app.route("/avocado/volume")
@@ -50,7 +52,8 @@ def sales_file():
     json_projects = []
     for project in projects:
         json_projects.append(project)
-    json_projects = json.dumps(json_projects, default=json_util.default)
+    #json_projects = json.dumps(json_projects, default=json_util.default)
+    json_projects = simplejson.dumps(json_projects, default=json_util.default, ignore_nan=True)
     connection.close()
     return json_projects
 
