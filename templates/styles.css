@@ -1,0 +1,99 @@
+/* ----DEFAULT ELEMENT STYLING START---- */
+html {
+    /* Positioning */
+    position: relative;
+  
+    /* Box-model */
+    min-height: 100%;
+  }
+  
+  body {
+    /* Positioning */
+    margin-bottom: 500px;
+  
+    /* Typography */
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  
+    /* Visual */
+    background-color: rgb(210, 255, 125);
+    
+  }
+  .row {
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  }
+/* ----NAV START---- */
+.navbar-custom {
+    background-color: #fff;
+  }
+  
+  #logo {
+    /* Box-model */
+    height: 60px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+  
+    /* Positioning */
+    margin-left: 70px;
+    font-family: Georgia, Times, "Times New Roman", serif;
+  
+    /* Typography */
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+  
+    /* Visual */
+    background: #4aaaa5;
+  }
+  
+  /* Logo hover state */
+  #logo:hover {
+    /* Visual */
+    opacity: 0.7;
+  }
+  
+  .navbar-right-custom {
+    /* Box-model */
+    padding-top: 6px;
+    padding-right: 20px;
+  
+    /* Typography */
+    font-family: Arial;
+    font-weight: lighter;
+  }
+  
+  /* Nav element hover state */
+  .navbar-default .navbar-nav > li > a:hover {
+    color: #4aaaa5;
+  }
+  
+  /* Media query for nav */
+  @media only screen and (max-width: 767px) {
+    .navbar-header {
+      background-color: #4aaaa5;
+    }
+  
+    #logo {
+      width: 100%;
+  
+      /* Box-model */
+      height: 60px;
+      padding-top: 20px;
+      padding-bottom: 5px;
+  
+      /* Positioning */
+      margin-left: 0;
+      font-family: Georgia, Times, "Times New Roman", serif;
+  
+      /* Typography */
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+  
+      /* Visual */
+      background: #4aaaa5;
+    }
+  }
+  
+  /* -----NAV END---- */
