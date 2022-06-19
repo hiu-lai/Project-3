@@ -25,8 +25,8 @@ Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.
 - Pricing 
 
 ## Authors
-hiu-lai           - Hiu Lai 
-weiwen1998        - Wei Wen 
-michaeldunneMD17  - Michael Dunne 
-krama193          - Ramana Kumar Ganesula 
-                  - Nicholas Chatjaval 
+-hiu-lai           - Hiu Lai 
+-weiwen1998        - Wei Wen 
+-michaeldunneMD17  - Michael Dunne 
+-krama193          - Ramana Kumar Ganesula 
+                   - Nicholas Chatjaval 
