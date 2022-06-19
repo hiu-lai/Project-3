@@ -21,11 +21,11 @@ def home ():
 @app.route("/fetch_data")
 def volume_file():
     vol_data = data_clean.volume_file()
-    total_sold = data_clean.total_file()
+    # total_sold = data_clean.total_file()
     # mongo.db.collection.update_one({}, {"$set": vol_data}, upsert=True)
     result = mongo.db.volume_data.delete_many({})
     mongo.db.volume_data.insert_many(vol_data)
-    mongo.db.volume_data.insert_many(total_sold)
+    # mongo.db.volume_data.insert_many(total_sold)
     # Redirect back to home page
     return redirect("/")
 if __name__ == "__main__":

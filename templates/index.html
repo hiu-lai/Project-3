@@ -28,17 +28,16 @@
         <!--PICTURE ROW-->
         <div class="row">
             <div class="col-12 bg-primary" style="height: 250px; background-image: url('https://miro.medium.com/max/1200/0*rf3vYHB2_wonfkBN')">
-                
             </div>
         </div>
 
         <!--ROW WITH TWO COLUMNS-->
         <div class="row">
-            <div class="col-6 bg-success">
+            <!-- <div class="col-6 bg-success">
                 Topics
-            </div>
+            </div> -->
             <!--COLUMN CONTAINING MULTIPLE ROWS-->
-            <div class="col-6 bg-warning">
+            <!-- <div class="col-6 bg-warning">
                 <div class="row bg-black text-white">
                     Is Avocado consumption an indicator for cost of living?
                 </div>
@@ -48,11 +47,11 @@
                 <div class="row bg-black text-white">
                     United States Census Data 
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-5 volume_3_years">
-                <button onclick="vol_2020">2020</button>
-                <button onclick="vol_2021">2021</button>
-                <button onclick="vol_2022">2022</button>
+            </p><button class="btn btn-secondary" id="first_year" >2020</button>
+                <button class="btn btn-secondary" id="second_year" >2021</button>
+                <button class="btn btn-secondary active" id="third_year" >2022</button>
             </div>
         </div>
 
@@ -70,8 +69,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="./static/lib/js/crossfilter.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/4.2.7/dc.js"></script>
     <script src="./static/lib/js/queue.js"></script>
-    <script src="./static/js/hiu_line.js"></script> 
+    <script src="./static/js/hiu.js"></script> 
 </body>
 </html>

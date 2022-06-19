@@ -7,6 +7,7 @@ from bson.json_util import dumps, loads
 import pandas
 import json
 import data_clean
+import simplejson
 
 #Specify string names inside '' for following variables 
 MONGODB_HOST = 'localhost'
@@ -50,7 +51,7 @@ def sales_file():
     json_projects = []
     for project in projects:
         json_projects.append(project)
-    json_projects = json.dumps(json_projects, default=json_util.default)
+    json_projects = json.dumps(json_projects, ignore_nan=True, default=json_util.default)
     connection.close()
     return json_projects
 

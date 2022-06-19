@@ -61,7 +61,7 @@ def volume_file():
 
     volume_transformed = volume.fillna(0)
 
-    volume_transformed['WEDate'] = pd.to_datetime(volume_transformed.Week)
+    volume_transformed['WEDate'] = pd.to_datetime(volume_transformed['Week']).dt.strftime('%d-%m-%Y')
 
     actual_vol_temp = volume_transformed.loc[(volume_transformed["Status"] == "Actual"), :]
     actual_vol = actual_vol_temp.to_dict("records")
