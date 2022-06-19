@@ -30,8 +30,6 @@ function makeResponsive() {
     .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
 
-  // svg.append("text")
-  //   .text("20")
   d3.json("/avocado/volume").then(function(volume_data) {
 
     function init() { 
@@ -72,19 +70,18 @@ function makeResponsive() {
       }
 
       var chosenYear = volume_data.filter(d => d.Year == selYear);
-
-      update(chosenYear)
+      // var subgroups = ['Total Volume','California', 'Chile', 'Colombia', 'Dominican Republic', 'Mexico', 'Peru']
+      var subgroups = ['California', 'Chile', 'Colombia', 'Dominican Republic', 'Mexico', 'Peru']
+      update(chosenYear, subgroups)
     }
 
-    function update(chosenYear) {
+    function update(chosenYear, subgroups) {
       d3.selectAll("g").remove();
 
-      
-      var subgroups = ['Total Volume','California', 'Chile', 'Colombia', 'Dominican Republic', 'Mexico', 'Peru']
       var groups = d3.map(chosenYear, d => d.WEDate)
       
       var scaleY = 100000;
-
+      
       var dataReady = subgroups.map(function(colname) {
         return {
           name: colname,
@@ -115,7 +112,7 @@ function makeResponsive() {
         // Add Y axis
       // console.log(d3.max(chosenYear, data => data.Mexico / scaleY))
       var y = d3.scaleLinear()
-        .domain([0, (d3.max(chosenYear, data => data.Mexico / scaleY) + 50)])
+        .domain([0, (d3.max(chosenYear, data => data.Mexico / scaleY) + 70)])
         .range([ chartHeight, 0 ]);
 
       svg.append("g")
@@ -147,46 +144,34 @@ function makeResponsive() {
           .attr("width", xSubgroup.bandwidth())
           .attr("height", function(d) { return chartHeight - y(d.value); })
           .attr("fill", function(d) { return colour(d.key); })
-        
-      // legends
-      svg.selectAll("mydots")
-        .data(dataReady)
-        .enter()
-        .append("circle")
-          .attr("cx", 990)
-          .attr("cy", function(d,i){ return 10 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
-          .attr("r", 5)
-          .style("fill", function(d){ return colour(d.name)})
-    
-        // Add one dot in the legend for each name.
-        svg.selectAll("mylabels")
-          .data(subgroups)
+         
+        svg.selectAll("myLegend")
+          .data(dataReady)
           .enter()
-          .append("text")
-            .attr("x", 1010)
-            .attr("y", function(d,i){ return 10 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
-            .style("fill", function(d){ return colour(d)})
-            .text(function(d){ return d})
-            .attr("text-anchor", "left")
-            .style("alignment-baseline", "middle")
-
-          svg.selectAll("myLegend")
-            .data(dataReady)
-            .enter()
-              .append('g')
-              .append("text")
-                .attr('x', function(d,i){ return 30 + i*60})
-                .attr('y', 30)
-                .text(function(d) { return d.name; })
-                .style("fill", function(d){ return colour(d.name) })
-                .style("font-size", 15)
-              .on("click", function(d){
-                // is the element currently visible ?
-                currentOpacity = d3.selectAll("." + d.name).style("opacity")
-                // Change the opacity: from 0 to 1 or from 1 to 0
-                d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
-
+            .append('g')
+            .append("text")
+              .attr('x', function(d,i){ 
+                if (d.name == 'Dominican Republic' || d.name == 'Colombia'){
+                  var textsize = 560;
+                }
+                else {
+                  console.log(d.name)
+                  var textsize = 600;
+                }
+                return textsize + i*80
               })
+              .attr('y', 10)
+              .text(function(d) { return d.name; })
+              .style("fill", function(d){ return colour(d.name) })
+              .style("font-size", 12)
+              .on("click", function (d){
+                // is the element currently visible ?
+                    console.log(d)
+                // currentOpacity = d3.selectAll("." + d.name).style("opacity")
+                // Change the opacity: from 0 to 1 or from 1 to 0
+                // d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
+
+                  })
     }
     
     init();

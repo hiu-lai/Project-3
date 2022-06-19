@@ -51,8 +51,11 @@ def sales_file():
     json_projects = []
     for project in projects:
         json_projects.append(project)
-    json_projects = json.dumps(json_projects, ignore_nan=True, default=json_util.default)
+    json_projects = json.dumps(json_projects, default=json_util.default)
+    with open('static/geojson/sales_data.json', 'w') as file:
+        file.write(json_projects)
     connection.close()
+
     return json_projects
 
 @app.route("/fetch_data")
