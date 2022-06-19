@@ -150,47 +150,43 @@ function makeResponsive() {
         
       // legends
       svg.selectAll("mydots")
-        .data(subgroups)
+        .data(dataReady)
         .enter()
         .append("circle")
           .attr("cx", 990)
           .attr("cy", function(d,i){ return 10 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
           .attr("r", 5)
-          .style("fill", function(d){ return colour(d)})
-
+          .style("fill", function(d){ return colour(d.name)})
+    
         // Add one dot in the legend for each name.
         svg.selectAll("mylabels")
-          .data(dataReady)
+          .data(subgroups)
           .enter()
           .append("text")
-            .attr("class", function(d) { return d.name})
-            .datnum(function(d) {return {date: d.name, value: d.values[d.values.length - 1]};})
-            .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.value) + ")"; })
-            // .attr("x", 12)
-            // .attr("y", function(d,i){ return 10 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
-            .style("fill", function(d){ return colour(d.name)})
-            .text(function(d){ return d.name})
+            .attr("x", 1010)
+            .attr("y", function(d,i){ return 10 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+            .style("fill", function(d){ return colour(d)})
+            .text(function(d){ return d})
             .attr("text-anchor", "left")
             .style("alignment-baseline", "middle")
-            .style("font-size", 15)
-            
-            // svg.selectAll("myLegend")
-            //   .data(dataReady)
-            //   .enter()
-            //     .append('g')
-            //     .append("text")
-            //       .attr('x', function(d,i){ return 30 + i*60})
-            //       .attr('y', 30)
-            //       .text(function(d) { return d.name; })
-            //       .style("fill", function(d){ return Colour(d.name) })
-            //       .style("font-size", 15)
-            //     .on("click", function(d){
-            //       // is the element currently visible ?
-            //       currentOpacity = d3.selectAll("." + d.name).style("opacity")
-            //       // Change the opacity: from 0 to 1 or from 1 to 0
-            //       d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
 
-            //     })
+          svg.selectAll("myLegend")
+            .data(dataReady)
+            .enter()
+              .append('g')
+              .append("text")
+                .attr('x', function(d,i){ return 30 + i*60})
+                .attr('y', 30)
+                .text(function(d) { return d.name; })
+                .style("fill", function(d){ return colour(d.name) })
+                .style("font-size", 15)
+              .on("click", function(d){
+                // is the element currently visible ?
+                currentOpacity = d3.selectAll("." + d.name).style("opacity")
+                // Change the opacity: from 0 to 1 or from 1 to 0
+                d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
+
+              })
     }
     
     init();
