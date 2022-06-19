@@ -2,7 +2,7 @@
 
 ![When-Someone-Tells-You-Guac-Costs-Extra](https://user-images.githubusercontent.com/96853408/174475690-c1c55f97-36f5-4ccc-8060-77aa9a0a795d.gif)
 
-##Background 
+## Background 
 For this project we were assigned to a tell story with data visaulisations, focusing on providing users with an interactive experience to explore the datasets for themselves. 
 
 We went left field with our topic. Inspired by several team members love of food we settled on "An Analysis into the economic growth/ipacy of Avocados - a humble green fruit". 
