@@ -16,4 +16,17 @@ Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.
 
 <a href="https://loveonetoday.com/how-to/identify-hass-avocados/">Avocado glossary</a>
 
+
+## Topics of Analysis 
+- Sales 
+- External Influences
+- Volume
+- Competition 
+- Pricing 
+
 ## Authors
+hiu-lai           - Hiu Lai 
+weiwen1998        - Wei Wen 
+michaeldunneMD17  - Michael Dunne 
+krama193          - Ramana Kumar Ganesula 
+                  - Nicholas Chatjaval 
