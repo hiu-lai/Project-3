@@ -212,7 +212,7 @@ d3.json("/avocado/prices/", function (rawData) {
           position: "bottom",
           title: {
             display: true,
-            text: "Average Price Per Year ($USD)",
+            text: "Average Avocado Price ($USD)",
           },
         },
         y: {
