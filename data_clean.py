@@ -61,7 +61,7 @@ def volume_file():
 
     volume_transformed = volume.fillna(0)
 
-    volume_transformed['WEDate'] = pd.to_datetime(volume_transformed.Week)
+    volume_transformed['WEDate'] = pd.to_datetime(volume_transformed['Week']).dt.strftime('%d-%m-%Y')
 
     actual_vol_temp = volume_transformed.loc[(volume_transformed["Status"] == "Actual"), :]
     actual_vol = actual_vol_temp.to_dict("records")
@@ -109,9 +109,11 @@ def total_file():
     # Change dates columns to date 
     rearrange_cols_df['Current Year Week Ending'] = pd.to_datetime(rearrange_cols_df['Current Year Week Ending'])
     rearrange_cols_df['Year']=rearrange_cols_df['Current Year Week Ending'].dt.year
-    
+    rearrange_cols_df['Month']=rearrange_cols_df['Current Year Week Ending'].dt.month
+    rearrange_cols_df['Current Year Week Ending'] = pd.to_datetime(rearrange_cols_df['Current Year Week Ending']).dt.strftime('%d-%m-%Y')
+        
     # Rename columns
-    rearrange_cols_df.columns = ['City', 'Timeframe', 'Weekly Reporting Date', 'Produce Type', 'Average Avocado Price Year', 'Small/Medium (4046) Units', 'Large (4225) Units', 'Extra Large (4770) Units', 'Bulk GTIN', 'Bagged Units', 'Total Units', 'Year'] 
+    rearrange_cols_df.columns = ['City', 'Timeframe', 'Weekly Reporting Date', 'Produce Type', 'Average Avocado Price Year', 'Small/Medium (4046) Units', 'Large (4225) Units', 'Extra Large (4770) Units', 'Bulk GTIN', 'Bagged Units', 'Total Units', 'Year', 'Month'] 
 
     rearrange_cols_df[['s_city', 's_city_2']] = rearrange_cols_df.City.str.split(pat=chr(47), expand=True)
 
