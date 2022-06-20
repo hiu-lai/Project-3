@@ -30,3 +30,5 @@ Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.
 - michaeldunneMD17  - Michael Dunne 
 - krama193          - Ramana Kumar Ganesula 
 - nchatj            - Nicholas Chatjaval 
+
+![kek](https://raw.githubusercontent.com/hiu-lai/Project-3/main/inspiring%20visuals/avocado-guacamole.gif)
