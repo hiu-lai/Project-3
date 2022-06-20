@@ -29,4 +29,4 @@ Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.
 - weiwen1998        - Wei Wen 
 - michaeldunneMD17  - Michael Dunne 
 - krama193          - Ramana Kumar Ganesula 
-- Nicholas Chatjaval 
+- nchatj            - Nicholas Chatjaval 
