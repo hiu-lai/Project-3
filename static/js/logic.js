@@ -1,73 +1,113 @@
-// Store our API endpoint inside queryUrl
-var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+function makeResponsive() {
+
+var queryUrl ="/avocado/map_data";
 // Perform a GET request to the query URL
-d3.json(queryUrl).then(function(data) {
-  // Once we get a response, send the data.features object to the createFeatures function
-  createFeatures(data.features);
-});
+d3.json(queryUrl).then(function(map_data) {
+  // function init() {
+  //   getData();
 
-function createFeatures(earthquakeData) {
+  // }
 
-  // Define a function we want to run once for each feature in the features array
-  // Give each feature a popup describing the place and time of the earthquake
-  function onEachFeature(feature, layer) {
-    layer.bindPopup("<h3>" + feature.properties.place +
-      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
-  }
+	var parseTime = d3.timeParse("%d-%m-%Y");
+	var newDateFormat = d3.timeFormat("%d-%b");
+	var sortDate = d3.timeFormat("%Y-%m-%d");
+	// var monthFormat = d3.timeFormat("%m");
 
-  // Create a GeoJSON layer containing the features array on the earthquakeData object
-  // Run the onEachFeature function once for each piece of data in the array
-  var earthquakes = L.geoJSON(earthquakeData, {
-    onEachFeature: onEachFeature
-  });
+	// Cast the hours value to a number for each piece of tvData
+	map_data.forEach(function(data) {
+	  data.small = +data['4046 Units'];
+	  data.large = +data['4225 Units'];
+	  data.xl = +data['4770 Units'];
+	  data.bulkGTIN = +data['Bulk GTIN'];
+	  data.BaggedUnits = +data['Total Bagged Units']
+	  data.TotalUnits = +data['Total Bulk and Bags Units']
+	});
 
-  // Sending our earthquakes layer to the createMap function
-  createMap(earthquakes);
+	// console.log(data.months)
+	  // setup buttons
+  
+	  // d3.select("#first_year").on("click", getData);
+	  // d3.select("#second_year").on("click", getData);
+	  // d3.select("#third_year").on("click", getData);
+	  
+	  // function getData() {
+  
+		// if (this.id == "first_year"){
+		//   var selYear = '2020';
+		// }
+		// else if (this.id == "second_year") {
+		//   var selYear = '2021';
+		// }
+		// else {
+		  var selYear = '2022';
+		// }
+  
+		var chosenYear = map_data.filter(d => d.Year == '2022');
+		var chosenYear = chosenYear.filter(d => d.State != "Total");  
+//     console.log(chosenYear)
+//     createFeatures(chosenYear)
+// }});
+
+//   function createFeatures(chosenYear) {
+   
+ 
+    var cityMarkers = [];
+    chosenYear.forEach(function(data, i){
+
+     cityMarkers.push(
+        L.circle([data.lat, data.lon], {
+          storke: false,
+          fillOpacity: 0.75,
+          color: "red",
+          fillcolor: "red",
+          radius: data.TotalUnits/1000
+        })
+      )
+    })
+    
+    var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+      tileSize: 512,
+      maxZoom: 18,
+      zoomOffset: -1,
+      id: "mapbox/light-v10",
+      accessToken: API_KEY
+    });
+
+    var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+      maxZoom: 18,
+      id: "dark-v10",
+      accessToken: API_KEY
+    });
+
+    // Create two separate layer groups: one for cities and one for states
+    // var territories = L.layerGroup(territoryMarkers);
+    var cities = L.layerGroup(cityMarkers);
+
+    // Create a baseMaps object
+    var baseMaps = {
+      "Street Map": streetmap,
+      "Dark Map": darkmap
+    };
+
+  
+
+    // Define a map object
+    var myMap = L.map("map", {
+      center: [37.8, -96],
+      zoom: 4.5,
+      layers: [streetmap, cities]
+    });
+
+    // Pass our map layers into our layer control
+    // Add the layer control to the map
+    L.control.layers(baseMaps, {
+      collapsed: false
+    }).addTo(myMap);
+    init();
+})
 }
+makeResponsive();
 
-function createMap(earthquakes) {
-
-  // Define streetmap and darkmap layers
-  var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 120,
-    maxZoom: 18,
-    zoomOffset: -1,
-    id: "mapbox/streets-v11",
-    accessToken: API_KEY
-  });
-
-  var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
-    id: "dark-v10",
-    accessToken: API_KEY
-  });
-
-  // Define a baseMaps object to hold our base layers
-  var baseMaps = {
-    "Street Map": streetmap,
-    "Dark Map": darkmap
-  };
-
-  // Create overlay object to hold our overlay layer
-  var overlayMaps = {
-    Earthquakes: earthquakes
-  };
-
-  // Create our map, giving it the streetmap and earthquakes layers to display on load
-  var myMap = L.map("map", {
-    center: [
-      37.09, -95.71
-    ],
-    zoom: 5,
-    layers: [streetmap, earthquakes]
-  });
-
-  // Create a layer control
-  // Pass in our baseMaps and overlayMaps
-  // Add the layer control to the map
-  L.control.layers(baseMaps, overlayMaps, {
-    collapsed: false
-  }).addTo(myMap);
-}
+d3.select(window).on("resize", makeResponsive);

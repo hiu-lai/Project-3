@@ -14,7 +14,7 @@ function makeResponsive() {
 	  top: 30,
 	  right: 30,
 	  bottom: 50,
-	  left: 30
+	  left: 50
 	};
   
 	// Define dimensions of the chart area
@@ -28,7 +28,7 @@ function makeResponsive() {
 	  .attr("height", svgHeight)
 	  .attr("width", svgWidth)
 	  .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
-  
+
   
 	d3.json("/avocado/volume").then(function(volume_data) {
   
@@ -71,32 +71,39 @@ function makeResponsive() {
   
 		var chosenYear = volume_data.filter(d => d.Year == selYear);
   
-		var subgroups_data = ['California', 'Chile', 'Colombia', 'Dominican Republic', 'Mexico', 'Peru']
-  
 		update(chosenYear)
 	  }
-  
-	  function update(chosenYear) {
+
+
+	  function update(chosenYear, selectedItem) {
 		d3.selectAll("g").remove();
-  
+		console.log(selectedItem)
+		
 		var subgroups = ['Total Volume','California', 'Chile', 'Colombia', 'Dominican Republic', 'Mexico', 'Peru']
+
 		var groups = d3.map(chosenYear, d => d.WEDate)
 		
 		var scaleY = 100000;
 		
 		var dataReady = subgroups.map(function(colname) {
-		  return {
+
+			return {
 			name: colname,
 			values: chosenYear.map(function(d) {
+
 			  return {date: d['WEDate'], value: +d[colname]};
 			})
 		  }
 		})
-  
-		console.log(dataReady)
+
+		
+		// var y_scale = d3.scaleLinear().range([chartHeight,0]);
+		
 		var colour = d3.scaleOrdinal()
 		.domain(dataReady)
 		.range(d3.schemeSet2)
+
+
 		// Add X axis
 		var x = d3.scaleBand()
 		  .domain(groups)
@@ -112,16 +119,33 @@ function makeResponsive() {
 			.on("click", function(d){
 			  console.log(d)
 			});
+		
+		//Add Y axis
+
+		var y = d3.scaleLinear()
+			.domain([0, d3.max(chosenYear, data => data.Mexico / scaleY) + 50])
+			.range([ chartHeight, 0 ]);
+		svg.append("g")
+			.call(d3.axisLeft(y));
   
   
 		  // Add Y axis
 		// console.log(d3.max(chosenYear, data => data.Mexico / scaleY))
-		var y = d3.scaleLinear()
-		  .domain([0, (d3.max(chosenYear, data => data.Mexico / scaleY) + 70)])
-		  .range([ chartHeight, 0 ]);
-  
+		// var y = d3.scaleLinear()
+		//   .domain([0, (d3.max(chosenYear, data => data.Mexico / scaleY) + 70)])
+		//   .range([ chartHeight, 0 ]);
+		
+		  
+
 		svg.append("g")
-		  .call(d3.axisLeft(y));
+		  .call(d3.axisLeft(y))
+		  .selectAll("text")
+		  .attr("transform", "rotate(-90)")
+		  .attr("y", 0 - chartMargin.left)
+		  .attr("x", 0 - chartHeight/2)
+		  .attr("dy", "1em")
+		  .style("text-achor", "middle")
+		  .text("Volume (kg)")
   
 		var xSubgroup = d3.scaleBand()
 		  .domain(subgroups)
@@ -150,7 +174,7 @@ function makeResponsive() {
 			.attr("height", function(d) { return chartHeight - y(d.value); })
 			.attr("fill", function(d) {return colour(d.key); })
 		   
-		  svg.selectAll("myLegend")
+		svg.selectAll("myLegend")
 			.data(dataReady)
 			.enter()
 			  .append('g')
@@ -160,7 +184,7 @@ function makeResponsive() {
 					var textsize = 560;
 				  }
 				  else {
-					console.log(d.name)
+					// console.log(d.name)
 					var textsize = 600;
 				  }
 				  return textsize + i*80
@@ -169,14 +193,10 @@ function makeResponsive() {
 				.text(function(d) { return d.name; })
 				.style("fill", function(d){ return colour(d.name) })
 				.style("font-size", 12)
-				.on("click", function (d){
-				  // is the element currently visible ?
-					  console.log(d)
-				  // currentOpacity = d3.selectAll("." + d.name).style("opacity")
-				  // Change the opacity: from 0 to 1 or from 1 to 0
-				  // d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
-  
-					})
+				.on("click", function (d, i){
+					selectedItem = i.name
+					update(chosenYear,selectedItem)
+				})
 	  }
 	  
 	  init();
