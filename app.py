@@ -13,12 +13,16 @@ MONGODB_HOST = 'localhost'
 DBS_NAME = 'avocado_data'
 COLLECTION_NAME_V = 'volume_data' 
 COLLECTION_NAME_S = 'sales_data' 
+COLLECTION_NAME_P = 'price_data' 
 #Specify numerical variable (default used)
 MONGODB_PORT = 27017
 
 #Specify variables in csv of interest
 FIELDS_v = {'Week': True, 'Year': True, 'Status': True,'Total Volume': True, 'California': True,'Chile': True,'Mexico': True,'Peru': True,'Colombia': True, 'Dominican Republic': True,'WEDate': True,'_id': False}
 FIELDS_S = {'City_x': True, 'Timeframe': True, 'Weekly Reporting Date': True,'Product Type': True, 'Average Avocado Price Year': True,'Small/Medium (4046) Units': True,'Large (4225) Units': True,'Extra Large (4770) Units': True,'Bulk GTIN': True, 'Bagged Units': True,'Total Units': True, 'Year': True, 'State': True, 'lat':True, 'lon': True, 'Region': True, 'abbreviation': True, '_id': False}
+FIELDS_P = {'Produce Type': True, 'Average Avocado Price Year': True, 
+'Small/Medium (4046) Units': True,'Large (4225) Units': True,'Extra Large (4770) Units': True, 
+'Bagged Units': True,'Total Units': True, 'Year': True, 'State': True, 'Region': True,'_id': False}
 
 app = Flask(__name__)
 mongo = PyMongo(app, uri="mongodb://localhost:27017/avocado_data")
@@ -26,7 +30,10 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/avocado_data")
 @app.route("/")
 def index():
     return render_template("index.html")
-
+    
+@app.route("/price")
+def indexprice():
+    return render_template("index_pricegraph.html")
 
 @app.route("/avocado/volume")
 def volume_file():
@@ -54,6 +61,19 @@ def sales_file():
     connection.close()
     return json_projects
 
+@app.route("/avocado/prices/")
+def prices_file():
+    connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
+    collection = connection[DBS_NAME][COLLECTION_NAME_P]
+    projects = collection.find(projection=FIELDS_P, limit=100000)
+    #projects = collection.find(projection=FIELDS)
+    json_projects = []
+    for project in projects:
+        json_projects.append(project)
+    json_projects = json.dumps(json_projects, default=json_util.default)
+    connection.close()
+    return json_projects
+
 @app.route("/fetch_data")
 def fetch_files():
     vol_data = data_clean.volume_file()
@@ -69,6 +89,7 @@ def fetch_files():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=8000,debug=True)
+
 
 # import json
 # from flask import Flask, render_template, redirect

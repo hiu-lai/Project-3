@@ -1,0 +1,10 @@
+#myChart {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
+#bubbleChart {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
