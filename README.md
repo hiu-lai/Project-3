@@ -11,12 +11,10 @@ We went left field with our topic. Inspired by several team members love of food
 d3, d3.json, Plotly, DROPDOWN,  SQL, MongoDB, JQuery, CSS, Bootstrap
 
 ## Datasets 
-plu-total-hab-data <a href = "https://hassavocadoboard.com/category-data/">Retail Value & Price</a>t
-Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.com/volume-data-projections/">Volume Data  Projections (kg)</a>
-
-<a href="https://loveonetoday.com/how-to/identify-hass-avocados/">Avocado glossary</a>
+Dataset courtesy of <a href = "https://hassavocadoboard.com/">Hass Board US</a>
 
 
+<
 ## Topics of Analysis 
 - Sales 
 - Volume
