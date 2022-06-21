@@ -27,8 +27,13 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+       <ul class="navbar-nav ml-auto"></ul>
+       <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('index')}}" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Home
+        </a>
+      </li>
+       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Analysis
           </a>
@@ -49,9 +54,9 @@
     <div class="container">
         <!--TOP ROW-->
         <div class="row">
-            <div class="col-12 bg-primary text-center">
+            <div class="col-12 text-center">
                 <h1>Holy Guacamole! Avocado, the green gold of the world.</h1>
-                <p><strong>An Analysis into the economic growth of a humble green fruit.</strong></p>
+                <p>An Analysis into the economic growth of a humble green fruit.</p>
                 
             </div>
         </div>
@@ -61,10 +66,12 @@
             <div class="col-12 bg-primary" style="height: 250px; background-image: url('https://miro.medium.com/max/1200/0*rf3vYHB2_wonfkBN')">
             </div>
         </div>
+
+        <br><br>
         <!--ROW WITH TWO COLUMNS-->
         <div class="row">
 
-        <br><br>
+
         <div class="row bg-success">
             <div class="col-7">
                 <select id="competitionDate">
