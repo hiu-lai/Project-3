@@ -19,7 +19,6 @@ Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.
 
 ## Topics of Analysis 
 - Sales 
-- External Influences
 - Volume
 - Competition 
 - Pricing 
