@@ -3,3 +3,5 @@ __pycache__/
 .ipynb_checkpoints/*checkpoint.ipynb
 __pycache__/*.pyc
 
+config.py
+static/js/config.py
