@@ -7,46 +7,47 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="./static/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/lib/css//bootstrap.min.css">
     <link rel="stylesheet" href="./static/lib/css/keen-dashboards.css">
-    <link rel="stylesheet" href="./static/lib/css/dc.css">
-    <link rel="stylesheet" href="./static/css/custom.css">
-    <link rel="stylesheet" href="styles.css" media="screen">
-
-
-    
+    <!-- <link rel="stylesheet" href="./static/lib/css/dc.css"> -->
+    <!-- <link rel="stylesheet" href="./static/css/custom.css"> -->
+   
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid navbar-custom">
-  
-          <div class="row">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
-  
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right navbar-right-custom">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Analyses and Graphs</a>
-                  <ul class="dropdown-menu">
-                      <li><a href="index.html">Competition</a></li>
-                      <li><a href="#">Volume</a></li>
-                      <li><a href="external1.html">Sales</a></li>
-                      <li><a href="external2.html">Pricing</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <a class="navbar-brand" href="index.html">Home<span class="sr-only">(current)</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Analysis
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ url_for('avo_week')}}">Where does avocado come from?</a>
+            <a class="dropdown-item" id="submenu" href="{{ url_for('avo_week')}}">View by Week</a>
+            <a class="dropdown-item" id="submenu" href="{{ url_for('avo_year')}}">View by Year</a>
+            <a class="dropdown-item" href="Ramicane_chart.html">Where are the demand?</a>
+            <a class="dropdown-item" href="Infubinol_chart.html">Unit Price Trend</a>
+            <!-- <a class="dropdown-item" href="Ceftamin_chart.html">Ceftamin results</a> -->
+            <!-- <a class="dropdown-item"><hr></a> -->
+            <!-- <a class="dropdown-item" id="nav-list" href="Comparison.html">Comparison</a> -->
+            <a class="dropdown-item" id="nav-list" href="data.html">Data</a>                          
           </div>
-        </div>
-      </nav>
-
+        </li>
+        <!-- <li class="nav-item active">
+            <a class="nav-link" href="Comparison.html">Comparison</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="data.html">Data</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
     <div class="container">
         <!--TOP ROW-->
         <div class="row">
@@ -64,33 +65,19 @@
         </div>
 
         <!--ROW WITH TWO COLUMNS-->
-        <div class="row">
-            <!-- <div class="col-6 bg-success">
-                Topics
-            </div> -->
-            <!--COLUMN CONTAINING MULTIPLE ROWS-->
-            <!-- <div class="col-6 bg-warning">
-                <div class="row bg-black text-white">
-                    Is Avocado consumption an indicator for cost of living?
-                </div>
-                <div class="row">
-                    Correlation between cost of living and Avocado prics 
-                </div>
-                <div class="row bg-black text-white">
-                    United States Census Data 
-                </div>
-            </div> -->
-            <div class="col-md-5 volume_3_years">
+        <!-- <div class="row"> -->
+            <div class="volume_3_years">
             </p><button class="btn btn-secondary" id="first_year" >2020</button>
                 <button class="btn btn-secondary" id="second_year" >2021</button>
                 <button class="btn btn-secondary active" id="third_year" >2022</button>
+                
             </div>
-        </div>
+        <!-- </div> -->
 
-        <!--Bottom ROW-->
+
         <div class="row">
-            <div class="col-12 bg-primary text-center">
-                Bottom row
+            <div id="map-container">
+                
             </div>
         </div>
     </div>
@@ -103,7 +90,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/4.2.7/dc.js"></script>
-    <script src="./static/lib/js/queue.js"></script>
-    <script src="./static/js/hiu.js"></script> 
+    <!-- <script src="./static/lib/js/queue.js"></script> -->
+    <script src="../static/js/competition_year.js"></script> 
 </body>
 </html>
