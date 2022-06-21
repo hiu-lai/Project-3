@@ -72,7 +72,7 @@ function makeResponsive() {
 		  var selYear = '2022';
 		}
   
-		var chosenYear = sales_data['Small/Medium (4046) Units'].filter(d => d.Year == selYear);
+		var chosenYear = sales_data.filter(d => d.Year == selYear);
   
 		update(chosenYear)
 		
@@ -151,7 +151,7 @@ function makeResponsive() {
 
 		  // Add Y axis
 		var y = d3.scaleLinear()
-		  .domain([0, d3.max(chosenYear, data => data.small/ scaleY) + 50])
+		  .domain([0, d3.max(chosenYear, data => data['Small/Medium (4046) Units']/ scaleY) + 50])
 		  .range([ chartHeight, 0 ]);
 		svg.append("g")
 		  .call(d3.axisLeft(y));
