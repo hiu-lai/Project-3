@@ -121,10 +121,12 @@ def fetch_files():
     result_S = mongo.db.sales_data.delete_many({})
     result_V = mongo.db.volume_data.delete_many({})
     result_M = mongo.db.map_data.delete_many({})
+    result_P = mongo.db.price_data.delete_many({})
 
     mongo.db.volume_data.insert_many(vol_data)
     mongo.db.sales_data.insert_many(total_sold)
     mongo.db.map_data.insert_many(city_total)
+    mongo.db.map_data.insert_many(price_data)
     # Redirect back to home page
     return redirect("/")
 
