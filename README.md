@@ -31,7 +31,7 @@ Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.
 - nchatj            - Nicholas Chatjaval 
 
 ## Graph Analyses
-# Sales
+### Sales
 
 Trends of Datasets: 
 The majority of sales come from small/medium and bulk GTIN units. There is a seasonal trend (upward/downward wave movements)
@@ -43,7 +43,7 @@ D3, json, MongoDB
 Limitations: 
 Lack of detail on the small/medium units in a much bigger depth (they are combined), making it harder to understand the difference.
 
-# Volume
+### Volume
 
 Trends of Datasets: 
 Mexico has the highest volume of avocado through the 2-and-a-half year period.
@@ -58,7 +58,7 @@ A small number of countries available -  indicating issues in details on the glo
 There is some difficulty in finding data from a variety of countries.
 
 
-# Competition
+### Competition
 
 Trends of Datasets: 
 Data heavily skewed towards Mexico & California in early 2020. 
@@ -81,7 +81,7 @@ Dataset only lists whether the Avocados are Organic or Hass varieties
 More than 500+ confirmed types of Avocados.
  
 
-# Pricing
+### Pricing
 Trends of Datasets: 
 Southern States (eg: Georgia, Texas) generally had higher total units exported, and lower average prices. 
 Northern states generally had lower total units,  (Massachusetts, Illinois), and higher average prices   (Freight costs)
