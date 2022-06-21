@@ -1,122 +1,57 @@
-/* #pieChart {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 400px;
-  height: 400px;
+html,
+body {
+  height: 150%;
+
+}
+#map {
+  height: 45%;
+  width: 80%;
+  padding: 10;
+  margin-right: 100;
+  margin-left: 150px;
 }
 
-#lineChart {
-  position: absolute;
-  top: 10px;
-  left: 410px;
-  height: 150px;
+#submenu {
+  /* color: #C4C4C4;
+  font-size: 14px; */
+  padding-left: 50px !important;
+  /* border-bottom: 1px solid #585858; */
 }
 
-#barChart {
-  position: absolute;
-  top: 160px;
-  left: 410px;
-  height: 250px;
-}
+.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+.dropdown-menu > li:hover > .submenu{ display: block; }
 
-#BarLineChart {
-  position: absolute;
-  top: 300px;
-  left: 10px;
-  height: 250px;
-}
+.dropdown-item > li:hover{ background-color: #f1f1f1 }
+.dropdown-item > li:hover > .submenu{ display: block; }
 
-.slice {
-  font-size: 12pt;
-  font-family: Verdana;
-  fill: white;
+.legend {
+  padding: 10px;
+  font-family: Sanchez, serif;
+  font-size: 16px;
   font-weight: bold;
-}
-/* //////svg specific - instead of color */
-/*for line chart*/
-.axis path,
-.axis line {
-  fill: none;
-  stroke: black;
-  shape-rendering: crispEdges; /*The shape-rendering property is an SVG attribute, used here to make sure our axis and its tick mark lines are pixel-perfect.*/
+  line-height: 18px;
+  color: #555;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 3px;
+.legend .low {
+  color: #ec8a2e;
 }
 
-.dot {
-  fill: white;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+.legend .empty {
+  color: #a0353a;
 }
 
-.axis text {
-  font-family: Verdana;
-  font-size: 11px;
+.legend .coming-soon {
+  color: #f4ba48;
 }
 
-.title {
-  font-family: Verdana;
-  font-size: 15px;
+.legend .healthy {
+  color: #1b904f;
 }
 
-.xAxis {
-  font-family: verdana;
-  font-size: 11px;
-  fill: black;
-}
-
-.yAxis {
-  font-family: verdana;
-  font-size: 11px;
-  fill: white;
-}
-
-table {
-  border-collapse: collapse;
-  border: 0px;
-  font-family: Verdana;
-  color: #5c5558;
-  font-size: 12px;
-  text-align: right;
-}
-
-td {
-  padding-left: 10px;
-}
-
-#lineChartTitle1 {
-  font-family: Verdana;
-  font-size: 14px;
-  fill: lightgrey;
-  font-weight: bold;
-  text-anchor: middle;
-}
-
-#lineChartTitle2 {
-  font-family: Verdana;
-  font-size: 72px;
-  fill: grey;
-  text-anchor: middle;
-  font-weight: bold;
-  /*font-style: italic;*/
-}
-*/ .form-control-dark {
-  border-color: var(--bs-gray);
-}
-.form-control-dark:focus {
-  border-color: #fff;
-  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
-}
-
-.text-small {
-  font-size: 85%;
-}
-
-.dropdown-toggle {
-  outline: 0;
+.legend .out-of-order {
+  color: #007dff;
 }
