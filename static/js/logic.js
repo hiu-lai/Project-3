@@ -60,7 +60,7 @@ d3.json(queryUrl).then(function(map_data) {
           fillOpacity: 0.75,
           color: "red",
           fillcolor: "red",
-          radius: data.TotalUnits/1000
+          radius: data.TotalUnits/100
         })
       )
     })
