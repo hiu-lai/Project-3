@@ -22,6 +22,9 @@ MONGODB_PORT = 27017
 FIELDS_v = {'Week': True, 'Year': True, 'Status': True,'Total Volume': True, 'California': True,'Chile': True,'Mexico': True,'Peru': True,'Colombia': True, 'Dominican Republic': True,'WEDate': True,'_id': False}
 FIELDS_S = {'City_x': True, 'Timeframe': True, 'Weekly Reporting Date': True,'Product Type': True, 'Average Avocado Price Year': True,'Small/Medium (4046) Units': True,'Large (4225) Units': True,'Extra Large (4770) Units': True,'Bulk GTIN': True, 'Bagged Units': True,'Total Units': True, 'Year': True, 'State': True, 'lat':True, 'lon': True, 'Region': True, 'abbreviation': True, 'Month':True, '_id': False}
 FIELDS_M = {'City_x': True, 'Year': True, 'Type': True, '4046 Units': True, '4225 Units': True, '4770 Units': True, 'Bulk GTIN': True, 'TotalBagged Units': True, 'Total Bulk and Bags Units': True, 'State': True, 'lat': True, 'lon': True, 'lon': True, 'Region':True, '_id': False}
+FIELDS_P = {'Produce Type': True, 'Average Avocado Price Year': True, 
+'Small/Medium (4046) Units': True,'Large (4225) Units': True,'Extra Large (4770) Units': True, 
+'Bagged Units': True,'Total Units': True, 'Year': True, 'State': True, 'Region': True,'_id': False}
 
 app = Flask(__name__)
 mongo = PyMongo(app, uri="mongodb://localhost:27017/avocado_data")
@@ -35,6 +38,10 @@ def sales_map():
 
     return render_template("sales_map.html")
 
+@app.route("/price")
+def indexprice():
+    return render_template("pricegraph.html")
+
 @app.route("/avocado/map_data")
 def map_data():
 
@@ -47,6 +54,19 @@ def map_data():
         json_projects.append(project)
     #json_projects = json.dumps(json_projects, default=json_util.default)
     json_projects = simplejson.dumps(json_projects, default=json_util.default, ignore_nan=True)
+    connection.close()
+    return json_projects
+
+@app.route("/avocado/prices/")
+def prices_file():
+    connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
+    collection = connection[DBS_NAME][COLLECTION_NAME_P]
+    projects = collection.find(projection=FIELDS_P, limit=100000)
+    #projects = collection.find(projection=FIELDS)
+    json_projects = []
+    for project in projects:
+        json_projects.append(project)
+    json_projects = json.dumps(json_projects, default=json_util.default)
     connection.close()
     return json_projects
 
