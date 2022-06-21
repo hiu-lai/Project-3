@@ -52,6 +52,10 @@ def avo_year():
 def indexprice():
     return render_template("pricegraph.html")
 
+@app.route("/sales")
+def salesdata():
+    return render_template("sales.html")
+
 @app.route("/avocado/map_data")
 def map_data():
 
