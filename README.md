@@ -56,7 +56,7 @@ D3, json, MongoDB
 Limitations: 
 A small number of countries available -  indicating issues in details on the global situation of the volume of avocados.
 There is some difficulty in finding data from a variety of countries.
-
+Lack of understanding on the type of avocados that are sold (hass or original).
 
 ### Competition
 
