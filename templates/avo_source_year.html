@@ -10,14 +10,16 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- <a class="navbar-brand" href="index.html">Home<span class="sr-only">(current)</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('index')}}" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Home
+          </a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Analysis
@@ -39,7 +41,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h1>Holy Guacamole! Avocado, the green gold of the world.</h1>
-                <p><stron>An Analysis into the economic growth of a humble green fruit.</stron></p>
+                <p>An Analysis into the economic growth of a humble green fruit.</p>
                 <!-- <p><a class="btn btn-primary btn-lg" href="/avocado/sales" role="button">Fetch new Data</a></p> -->
             </div>
         </div>

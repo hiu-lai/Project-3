@@ -32,14 +32,19 @@ Dataset courtesy of <a href = "https://hassavocadoboard.com/">Hass Board US</a>
 ### Sales
 
 Trends of Datasets: 
-The majority of sales come from small/medium and bulk GTIN units. There is a seasonal trend (upward/downward wave movements)
-Small/medium units peaked nearly the entire 2020 period.
+The majority of sales come from small/medium and bulk GTIN units. 
+There is a seasonal trend (upward/downward wave movements) - there are less sales in the second half of the 2021 year.
+Noticeable spikes in February.
+
 
 Software Used: 
 D3, json, MongoDB  
 
-Limitations: 
+Limitations:
 Lack of detail on the small/medium units in a much bigger depth (they are combined), making it harder to understand the difference.
+This only focuses on hass avocados, may not provide a bigger picture on the variety of different avocados.
+There is also a lack of clarity on the pricing.
+
 
 ### Volume
 
