@@ -38,6 +38,16 @@ def sales_map():
 
     return render_template("sales_map.html")
 
+@app.route("/competition_week")
+def avo_week():
+
+    return render_template("avo_source_week.html")
+
+@app.route("/competition_year")
+def avo_year():
+
+    return render_template("avo_source_year.html")
+
 @app.route("/price")
 def indexprice():
     return render_template("pricegraph.html")
