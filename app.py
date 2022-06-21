@@ -15,6 +15,7 @@ DBS_NAME = 'avocado_data'
 COLLECTION_NAME_V = 'volume_data' 
 COLLECTION_NAME_S = 'sales_data' 
 COLLECTION_NAME_M = 'map_data' 
+COLLECTION_NAME_P = 'price_data' 
 #Specify numerical variable (default used)
 MONGODB_PORT = 27017
 
