@@ -27,6 +27,7 @@ function makeResponsive() {
 	  .append("svg")
 	  .attr("height", svgHeight)
 	  .attr("width", svgWidth)
+	  .attr("style", "background-color:white")
 	  .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
   
