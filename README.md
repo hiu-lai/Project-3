@@ -8,7 +8,7 @@ For this project we were assigned to a tell story centered around data visualisa
 We went left field with our topic. Inspired by several team members love of food we settled on "An Analysis into the economic growth/impact of Avocados".  
 
 ## Programs Used
-d3, d3.json, Plotly, DROPDOWN,  SQL, MongoDB, JQuery, 
+d3, d3.json, Plotly, DROPDOWN,  SQL, MongoDB, JQuery, CSS, Bootstrap
 
 ## Datasets 
 plu-total-hab-data <a href = "https://hassavocadoboard.com/category-data/">Retail Value & Price</a>t
@@ -19,7 +19,6 @@ Volume Data  Projections - Hass Avocado Board <a href="https://hassavocadoboard.
 
 ## Topics of Analysis 
 - Sales 
-- External Influences
 - Volume
 - Competition 
 - Pricing 
